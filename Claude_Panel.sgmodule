@@ -1,11 +1,13 @@
-#!name=ChatGPT & Claude Panel
-#!desc=ChatGPT 與 Claude 可用地區檢測 Panel（不顯示 WARP 狀態）
+#!name=ChatGPT & Claude Panels
+#!desc=分開顯示 ChatGPT 與 Claude 可用地區檢測（不顯示 WARP 狀態）
 #!author=Bibibiibi
 
 # 可在 argument 中自訂 title、icon、iconerr、icon-color、iconerr-color。
 
 [Panel]
-AI_Unlock = title="ChatGPT & Claude",content="區域可用性檢測",script-name=AI_Availability,update-interval=-1
+ChatGPT = title="ChatGPT",content="區域可用性檢測",script-name=ChatGPT_Availability,update-interval=-1
+Claude = title="Claude",content="區域可用性檢測",script-name=Claude_Availability,update-interval=-1
 
 [Script]
-AI_Availability = type=generic,timeout=8,script-path=https://raw.githubusercontent.com/Bibibiibi/modoule-surge/main/Claude_2_nowarp.js,script-update-interval=86400,argument=title=ChatGPT%20%26%20Claude&icon=brain.head.profile&iconerr=xmark.seal.fill&icon-color=#D97706&iconerr-color=#D65C51
+ChatGPT_Availability = type=generic,timeout=8,script-path=https://raw.githubusercontent.com/getsomecat/GetSomeCats/Surge/modules/Panel/CFGPT/CFGPT_2_nowarp.js,script-update-interval=86400,argument=title=ChatGPT&icon=lasso.and.sparkles&iconerr=xmark.seal.fill&icon-color=#336FA9&iconerr-color=#D65C51
+Claude_Availability = type=generic,timeout=8,script-path=https://raw.githubusercontent.com/Bibibiibi/modoule-surge/main/Claude_2_nowarp.js,script-update-interval=86400,argument=title=Claude&icon=brain.head.profile&iconerr=xmark.seal.fill&icon-color=#D97706&iconerr-color=#D65C51
