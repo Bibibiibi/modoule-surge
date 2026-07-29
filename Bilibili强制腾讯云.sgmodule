@@ -1,0 +1,11 @@
+#!name=Bilibili Mirrorcos
+#!desc=macOS 与 iOS 共用，将 Bilibili 点播视频和音频切换到腾讯云 mirrorcos
+
+[MITM]
+hostname = %APPEND% api.bilibili.com
+
+[Body Rewrite]
+http-response-jq ^https://api\.bilibili\.com/(x/player/(wbi/)?playurl|pgc/player/web(/v2)?/playurl|pugv/player/web/playurl) 'walk(if type == "string" and test("^https?://[^/]+/upgcxcode/") then sub("^https?://[^/]+"; "https://upos-sz-mirrorcos.bilivideo.com") else . end)'
+
+[URL Rewrite]
+^http://(?!upos-sz-mirrorcos\.bilivideo\.com/)[^/]+/(upgcxcode/.*)$ http://upos-sz-mirrorcos.bilivideo.com/$1 header
