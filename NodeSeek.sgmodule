@@ -1,0 +1,20 @@
+#!name = NodeSeek 签到
+#!desc = NodeSeek 每日签到 + Cookie 捕获（Surge Mac）
+#!system = mac
+
+[Script]
+# ──────────────────────────────────────────────
+# 步骤一：捕获 Cookie
+# 启用后访问 https://www.nodeseek.com 个人页面
+# 收到「Cookie 成功」通知后立即禁用此行（注释掉）
+# ──────────────────────────────────────────────
+NodeSeek Cookie = type=http-request,pattern=https://www\.nodeseek\.com/,requires-body=0,max-size=131072,timeout=10,script-path=NodeSeek.js,argument=MODE=cookie
+
+# ──────────────────────────────────────────────
+# 步骤二：每日签到（每天 08:00 自动运行）
+# 随机鸡腿（默认）
+# ──────────────────────────────────────────────
+NodeSeek CheckIn = type=cron,cronexp=0 8 * * *,wake-system=1,timeout=30,script-path=NodeSeek.js,argument=MODE=checkin
+
+# 固定 5 鸡腿（与上面二选一，需要时取消注释）
+# NodeSeek CheckIn Fixed = type=cron,cronexp=0 8 * * *,wake-system=1,timeout=30,script-path=NodeSeek.js,argument=MODE=checkin&FIXED_LEGS=true
